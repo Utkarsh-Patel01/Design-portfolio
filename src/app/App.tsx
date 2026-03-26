@@ -99,7 +99,7 @@ export default function App() {
     },
     {
       category: "AI Engineering",
-      skills: ["PyTorch", "Scikit-learn", "HuggingFace", "OpenCV", "CNN", "LSTM", "LangChain", "n8n", "OpenAI APIs", "Anthropic APIs"],
+      skills: ["PyTorch", "Scikit-learn", "HuggingFace", "OpenCV", "CNN", "LSTM", "LangChain", "n8n"],
     },
     {
       category: "DevOps & Tools",
