@@ -20,6 +20,7 @@ import {
 import { ProjectCard } from "./components/ProjectCard";
 import { CertificationCard } from "./components/CertificationCard";
 import { SkillCategory } from "./components/SkillCategory";
+import { CustomCursor } from "./components/CustomCursor";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
@@ -152,6 +153,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative">
+      <CustomCursor />
       {/* Top Floating Navigation Bar */}
       <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 hidden lg:flex items-center gap-2 p-2 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
         {navItems.map((item) => {
