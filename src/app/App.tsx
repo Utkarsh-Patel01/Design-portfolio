@@ -21,6 +21,7 @@ import { ProjectCard } from "./components/ProjectCard";
 import { CertificationCard } from "./components/CertificationCard";
 import { SkillCategory } from "./components/SkillCategory";
 import { CustomCursor } from "./components/CustomCursor";
+import { Typewriter } from "./components/Typewriter";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
@@ -216,8 +217,8 @@ export default function App() {
               className="flex items-center gap-3 mb-8 justify-center lg:justify-start"
             >
               <div className="h-px w-16 bg-foreground" />
-              <p className="text-xl md:text-2xl text-muted-foreground">
-                Data Scientist & ML Engineer
+              <p className="text-xl md:text-2xl text-muted-foreground min-w-[280px]">
+                <Typewriter words={["Data Scientist & ML Engineer", "AI Solutions Developer", "Big Data Analyst"]} />
               </p>
             </motion.div>
             <motion.p
