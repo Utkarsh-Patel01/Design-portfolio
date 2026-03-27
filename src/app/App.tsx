@@ -363,9 +363,6 @@ export default function App() {
             transition={{ duration: 0.6 }}
           >
             <div className="text-center mb-16">
-              <p className="text-muted-foreground mb-4 uppercase tracking-wider text-sm">
-                Portfolio
-              </p>
               <h2 className="text-5xl md:text-6xl mb-6 text-foreground">
                 Featured Projects
               </h2>
@@ -400,11 +397,13 @@ export default function App() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-4 mb-16">
-              <h2 className="text-5xl md:text-6xl text-foreground">
-                Skills & Tools
+            <div className="mb-16">
+              <p className="text-muted-foreground mb-4 uppercase tracking-[0.2em] text-sm font-medium">
+                Technical Arsenal
+              </p>
+              <h2 className="text-5xl md:text-6xl text-foreground font-serif">
+                Skills <span className="italic font-light">&</span> Technologies
               </h2>
-              <div className="h-px flex-1 bg-border max-w-xs" />
             </div>
             <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
               {skillCategories.map((category, index) => (
