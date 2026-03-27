@@ -135,7 +135,7 @@ export default function App() {
     },
     {
       title: "Microsoft Excel Certification",
-      issuer: "Microsoft",
+      issuer: "Udemy",
       date: "2024",
       url: "https://www.udemy.com/certificate/UC-4e5f28e0-248f-4712-bfaa-ff182716eb52/",
       image: "/assets/Microsoft Excel Certification.png",
@@ -164,8 +164,8 @@ export default function App() {
               key={item.id}
               onClick={() => scrollToSection(item.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${activeSection === item.id
-                  ? "bg-secondary text-foreground font-medium"
-                  : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                ? "bg-secondary text-foreground font-medium"
+                : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
                 }`}
               aria-label={item.label}
             >
@@ -247,7 +247,7 @@ export default function App() {
                   className="group-hover:translate-x-1 transition-transform"
                 />
               </button>
-              <a 
+              <a
                 href="https://drive.google.com/file/d/1ssc8pH6L703-r5UPNncLmbiuBKHDi67x/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
