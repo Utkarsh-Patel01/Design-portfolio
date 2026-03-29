@@ -22,6 +22,7 @@ import { CertificationCard } from "./components/CertificationCard";
 import { SkillCategory } from "./components/SkillCategory";
 import { CustomCursor } from "./components/CustomCursor";
 import { Typewriter } from "./components/Typewriter";
+import { Link } from "react-router";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
@@ -37,7 +38,6 @@ export default function App() {
     const handleScroll = () => {
       const sections = [
         "home",
-        "about",
         "projects",
         "skills",
         "certifications",
@@ -153,12 +153,36 @@ export default function App() {
   ];
 
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative z-0">
+      {/* Subtle Grid Background */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-[-1] opacity-[0.04] dark:opacity-[0.03]"
+        style={{
+          backgroundImage: 'linear-gradient(to right, var(--foreground) 1px, transparent 1px), linear-gradient(to bottom, var(--foreground) 1px, transparent 1px)',
+          backgroundSize: '4rem 4rem',
+        }}
+      />
+
       <CustomCursor />
       {/* Top Floating Navigation Bar */}
       <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 hidden lg:flex items-center gap-2 p-2 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
         {navItems.map((item) => {
           const Icon = item.icon;
+          
+          if (item.id === "about") {
+            return (
+              <Link
+                key={item.id}
+                to="/about"
+                className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                aria-label={item.label}
+              >
+                <Icon className="w-4 h-4" />
+                <span className="text-sm">{item.label}</span>
+              </Link>
+            );
+          }
+
           return (
             <button
               key={item.id}
@@ -261,98 +285,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-32 px-6 relative">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-4 mb-12">
-              <h2 className="text-5xl md:text-6xl text-foreground">About Me</h2>
-              <div className="h-px flex-1 bg-border max-w-xs" />
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <div className="space-y-6">
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  I'm a passionate Data Scientist with a strong analytical
-                  mindset and expertise in machine learning and data-driven
-                  systems. My work focuses on transforming complex data into
-                  actionable insights that drive real-world impact.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  With proficiency in Python, SQL, and modern ML frameworks, I
-                  specialize in building scalable data solutions, optimizing
-                  analytics pipelines, and creating compelling data
-                  visualizations that tell meaningful stories.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  I combine technical expertise with problem-solving abilities
-                  to deliver innovative solutions that bridge the gap between
-                  data and business value.
-                </p>
-              </div>
-
-              <div className="space-y-6">
-                <div className="bg-card rounded-2xl p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] transition-shadow">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
-                      <Code2 className="w-6 h-6 text-foreground" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl mb-2 text-foreground">
-                        Clean Code
-                      </h3>
-                      <p className="text-muted-foreground">
-                        Writing efficient, maintainable, and scalable code
-                        following best practices
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-card rounded-2xl p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] transition-shadow">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
-                      <Database className="w-6 h-6 text-foreground" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl mb-2 text-foreground">
-                        Data Engineering
-                      </h3>
-                      <p className="text-muted-foreground">
-                        Building robust data pipelines and warehouses for
-                        enterprise-scale analytics
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-card rounded-2xl p-6 shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] transition-shadow">
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center flex-shrink-0">
-                      <Brain className="w-6 h-6 text-foreground" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl mb-2 text-foreground">
-                        Machine Learning
-                      </h3>
-                      <p className="text-muted-foreground">
-                        Developing intelligent models that learn from data and
-                        make accurate predictions
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Projects Section */}
       <section id="projects" className="py-32 px-6 bg-secondary/20">
         <div className="max-w-6xl mx-auto">
@@ -371,7 +303,7 @@ export default function App() {
                 analytics engineering
               </p>
             </div>
-            <div className="grid lg:grid-cols-2 gap-8">
+            <div className="flex flex-col gap-24 relative">
               {projects.map((project, index) => (
                 <motion.div
                   key={index}
@@ -379,6 +311,11 @@ export default function App() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.2 }}
+                  className="sticky"
+                  style={{ 
+                    top: `calc(120px + ${index * 30}px)`, 
+                    zIndex: index + 10 
+                  }}
                 >
                   <ProjectCard {...project} />
                 </motion.div>
