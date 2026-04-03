@@ -48,7 +48,9 @@ export function CustomCursor() {
         }
       `}</style>
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] mix-blend-difference hidden md:block"
+        className={`fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] hidden md:block ${
+          isHovering ? 'mix-blend-difference' : ''
+        }`}
         style={{
           x: springX,
           y: springY,
@@ -57,12 +59,12 @@ export function CustomCursor() {
         }}
         initial={{
           backgroundColor: 'transparent',
-          border: '1px solid white',
+          border: '1.5px solid black',
           scale: 1,
         }}
         animate={{
           backgroundColor: isHovering ? 'white' : 'transparent',
-          border: isHovering ? '0px solid white' : '1.5px solid white',
+          border: isHovering ? '0px solid white' : '1.5px solid black',
           scale: isHovering ? 2.5 : 1,
         }}
         transition={{

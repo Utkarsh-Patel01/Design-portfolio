@@ -20,6 +20,7 @@ import {
 import { ProjectCard } from "./components/ProjectCard";
 import { CertificationCard } from "./components/CertificationCard";
 import { SkillCategory } from "./components/SkillCategory";
+import { SkillSphere } from "./components/SkillSphere";
 import { CustomCursor } from "./components/CustomCursor";
 import { Typewriter } from "./components/Typewriter";
 import { Link } from "react-router";
@@ -39,7 +40,6 @@ export default function App() {
       const sections = [
         "home",
         "projects",
-        "skills",
         "certifications",
         "experience",
         "contact",
@@ -169,11 +169,11 @@ export default function App() {
         {navItems.map((item) => {
           const Icon = item.icon;
           
-          if (item.id === "about") {
+          if (item.id === "about" || item.id === "skills") {
             return (
               <Link
                 key={item.id}
-                to="/about"
+                to={`/${item.id}`}
                 className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
                 aria-label={item.label}
               >
@@ -325,39 +325,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="mb-16">
-              <p className="text-muted-foreground mb-4 uppercase tracking-[0.2em] text-sm font-medium">
-                Technical Arsenal
-              </p>
-              <h2 className="text-5xl md:text-6xl text-foreground font-serif">
-                Skills <span className="italic font-light">&</span> Technologies
-              </h2>
-            </div>
-            <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
-              {skillCategories.map((category, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <SkillCategory {...category} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
+
 
       {/* Certifications Section */}
       <section id="certifications" className="py-32 px-6 bg-secondary/20">
