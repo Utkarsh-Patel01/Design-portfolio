@@ -16,8 +16,8 @@ export function CertificationCard({
   url,
 }: CertificationCardProps) {
   return (
-    <div className="group bg-card rounded-2xl p-6 border border-border transition-all duration-300 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] hover:scale-[1.05]">
-      <div className="w-full h-40 bg-secondary rounded-xl mb-4 flex items-center justify-center overflow-hidden p-3 shadow-inner">
+    <div className="group bg-[#111111] rounded-2xl p-6 border border-[#2e2e2e] transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:border-[#ffffff] hover:scale-[1.05]">
+      <div className="w-full h-40 bg-[#0d0d0d] border border-[#2e2e2e] rounded-xl mb-4 flex items-center justify-center overflow-hidden p-3 shadow-inner">
         {image ? (
           <img
             src={image}
@@ -29,23 +29,23 @@ export function CertificationCard({
         )}
       </div>
       
-      <h4 className="text-lg mb-2 text-foreground line-clamp-2 min-h-[3.5rem]">
+      <h4 className="text-lg mb-2 text-[#f5f5f5] font-['Space_Grotesk'] line-clamp-2 min-h-[3.5rem] group-hover:text-[#ffffff] transition-colors">
         {title}
       </h4>
       
-      <p className="text-muted-foreground text-sm mb-1">{issuer}</p>
+      <p className="text-[#a0a0a0] text-sm mb-1">{issuer}</p>
       <div className="flex items-center justify-between mt-4">
-        <p className="text-muted-foreground text-xs">{date}</p>
+        <p className="text-[#a0a0a0] font-['JetBrains_Mono'] text-xs">{date}</p>
         
         {url && (
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-muted-foreground hover:text-foreground transition-colors p-1"
+            className="text-[#7a7a7a] hover:text-[#ffffff] transition-colors p-1"
             title="View Certificate"
           >
-            <ExternalLink className="w-5 h-5" />
+            <ExternalLink className="w-5 h-5 group-hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]" />
           </a>
         )}
       </div>

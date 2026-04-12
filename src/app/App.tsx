@@ -24,6 +24,7 @@ import { SkillSphere } from "./components/SkillSphere";
 import { CustomCursor } from "./components/CustomCursor";
 import { Typewriter } from "./components/Typewriter";
 import { Link } from "react-router";
+import { TechBackground } from "./components/TechBackground";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("home");
@@ -154,18 +155,10 @@ export default function App() {
 
   return (
     <div className="min-h-screen relative z-0">
-      {/* Subtle Grid Background */}
-      <div 
-        className="absolute inset-0 pointer-events-none z-[-1] opacity-[0.04] dark:opacity-[0.03]"
-        style={{
-          backgroundImage: 'linear-gradient(to right, var(--foreground) 1px, transparent 1px), linear-gradient(to bottom, var(--foreground) 1px, transparent 1px)',
-          backgroundSize: '4rem 4rem',
-        }}
-      />
-
+      <TechBackground />
       <CustomCursor />
       {/* Top Floating Navigation Bar */}
-      <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 hidden lg:flex items-center gap-2 p-2 bg-background/80 backdrop-blur-md border border-border rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
+      <div className="fixed top-8 left-1/2 -translate-x-1/2 z-50 hidden lg:flex items-center gap-2 p-2 bg-[#0d0d0d]/80 backdrop-blur-md border border-[#2e2e2e] rounded-full shadow-lg">
         {navItems.map((item) => {
           const Icon = item.icon;
           
@@ -174,11 +167,11 @@ export default function App() {
               <Link
                 key={item.id}
                 to={`/${item.id}`}
-                className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                className="flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 text-[#a0a0a0] hover:text-[#ffffff] hover:bg-[#141414]"
                 aria-label={item.label}
               >
-                <Icon className="w-4 h-4" />
-                <span className="text-sm">{item.label}</span>
+                <Icon className="w-4 h-4 hover:drop-shadow-[0_0_5px_#ffffff]" />
+                <span className="text-sm font-medium">{item.label}</span>
               </Link>
             );
           }
@@ -188,13 +181,13 @@ export default function App() {
               key={item.id}
               onClick={() => scrollToSection(item.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-300 ${activeSection === item.id
-                ? "bg-secondary text-foreground font-medium"
-                : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                ? "text-[#ffffff] shadow-[0_2px_0_0_#ffffff]"
+                : "text-[#a0a0a0] hover:text-[#ffffff] hover:bg-[#141414]"
                 }`}
               aria-label={item.label}
             >
-              <Icon className="w-4 h-4" />
-              <span className="text-sm">{item.label}</span>
+              <Icon className="w-4 h-4 hover:drop-shadow-[0_0_5px_#ffffff]" />
+              <span className="text-sm font-medium">{item.label}</span>
             </button>
           );
         })}
@@ -205,34 +198,37 @@ export default function App() {
         id="home"
         className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden"
       >
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-muted/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl" />
+        {/* Decorative background elements: Abstract Monochrome Orbs */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center lg:justify-end pr-0 lg:pr-32 opacity-20">
+          <div className="w-[500px] h-[500px] bg-gradient-to-tr from-[#2e2e2e] to-[#c8c8c8] rounded-full blur-[100px] mix-blend-screen" />
+          <div className="absolute w-[300px] h-[300px] bg-[#ffffff] rounded-full blur-[60px] opacity-20 mix-blend-screen" />
+          {/* Subtle Circular Tech Ring */}
+          <div className="absolute w-[600px] h-[600px] rounded-full border border-[#3d3d3d] border-dashed animate-spin-slow duration-[30000ms]" />
         </div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-6xl mx-auto relative z-10 w-full mb-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center lg:text-left"
           >
-            <motion.p
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-muted-foreground mb-4 text-lg"
+              transition={{ delay: 0.1 }}
+              className="mb-8 font-['JetBrains_Mono'] text-[#ffffff] text-sm md:text-base flex items-center gap-2"
             >
-              Hello, I'm
-            </motion.p>
+              <span className="animate-pulse">❯</span> Turning data into decisions_
+            </motion.div>
+            
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-6xl md:text-8xl lg:text-9xl mb-6 text-foreground tracking-tight"
+              className="text-6xl md:text-8xl lg:text-9xl mb-6 text-foreground tracking-tight uppercase"
             >
-              Utkarsh Patel
+              Utkarsh<br/><span className="text-[#a0a0a0]">Patel</span>
             </motion.h1>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -263,7 +259,7 @@ export default function App() {
             >
               <button
                 onClick={() => scrollToSection("projects")}
-                className="group px-8 py-4 bg-primary text-primary-foreground rounded-full hover:opacity-90 transition-all shadow-[0_4px_20px_rgba(0,0,0,0.15)] inline-flex items-center gap-2"
+                className="group px-8 py-4 bg-[#ffffff] text-[#0d0d0d] font-bold rounded-full hover:shadow-[0_0_20px_#ffffff] transition-all inline-flex items-center gap-2"
               >
                 View My Work
                 <ArrowRight
@@ -275,7 +271,7 @@ export default function App() {
                 href="https://drive.google.com/file/d/1ssc8pH6L703-r5UPNncLmbiuBKHDi67x/view?usp=sharing"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-4 border-2 border-foreground text-foreground rounded-full hover:bg-foreground hover:text-background transition-all inline-flex items-center gap-2"
+                className="px-8 py-4 border-2 border-[#3d3d3d] text-[#f5f5f5] rounded-full hover:bg-[#141414] hover:border-[#ffffff] hover:shadow-[0_0_15px_rgba(255,255,255,0.3)] transition-all inline-flex items-center gap-2"
               >
                 <Download size={18} />
                 Resume
@@ -284,6 +280,11 @@ export default function App() {
           </motion.div>
         </div>
       </section>
+
+      {/* Tech Glowing Divider -> Subtle Grey Line */}
+      <div className="w-full relative z-20 pointer-events-none flex justify-center -mt-6">
+        <div className="w-2/3 h-[1px] bg-[#2e2e2e]" />
+      </div>
 
       {/* Projects Section */}
       <section id="projects" className="py-32 px-6 bg-secondary/20">
@@ -380,8 +381,6 @@ export default function App() {
             </div>
 
             <div className="relative">
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-border hidden md:block ml-6" />
-
               <div className="space-y-12">
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
@@ -389,8 +388,7 @@ export default function App() {
                   viewport={{ once: true }}
                   className="relative"
                 >
-                  <div className="md:ml-16">
-                    <div className="absolute left-0 top-6 w-3 h-3 rounded-full bg-foreground hidden md:block -ml-[25px]" />
+                  <div>
                     <div className="bg-card rounded-2xl p-8 shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
                       <h3 className="text-2xl mb-2 text-foreground">
                         Machine Learning Training

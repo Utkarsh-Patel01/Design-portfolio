@@ -59,12 +59,12 @@ export function CustomCursor() {
         }}
         initial={{
           backgroundColor: 'transparent',
-          border: '1.5px solid black',
+          border: '1.5px solid white',
           scale: 1,
         }}
         animate={{
           backgroundColor: isHovering ? 'white' : 'transparent',
-          border: isHovering ? '0px solid white' : '1.5px solid black',
+          border: isHovering ? '0px solid white' : '1.5px solid white',
           scale: isHovering ? 2.5 : 1,
         }}
         transition={{
